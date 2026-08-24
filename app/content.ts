@@ -221,8 +221,7 @@ export const primaryContactLinks = [
   contactLinks[1],
   {
     label: "X",
-    // Replace this with your X profile URL when you are ready.
-    href: "https://x.com/",
+    href: "https://x.com/vasiljkovdarko",
     external: true,
   },
 ] as const;
