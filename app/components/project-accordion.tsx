@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 import type { Project } from "../content";
 
@@ -9,6 +10,7 @@ type ProjectAccordionProps = {
 
 export function ProjectAccordion({ projects }: ProjectAccordionProps) {
   const [openProject, setOpenProject] = useState<string | null>(null);
+  const [playingVideo, setPlayingVideo] = useState<string | null>(null);
 
   return (
     <ol className="project-list">
@@ -26,7 +28,10 @@ export function ProjectAccordion({ projects }: ProjectAccordionProps) {
                 className="project-trigger"
                 aria-expanded={isOpen}
                 aria-controls={panelId}
-                onClick={() => setOpenProject(isOpen ? null : project.name)}
+                onClick={() => {
+                  setOpenProject(isOpen ? null : project.name);
+                  setPlayingVideo(null);
+                }}
               >
                 <span className="project-heading">
                   <span className="project-name">{project.name}</span>
@@ -76,17 +81,67 @@ export function ProjectAccordion({ projects }: ProjectAccordionProps) {
                       and open the other work below.
                     </p>
                   </div>
+                ) : project.alreadyLive ? (
+                  <div className="project-live-card">
+                    <span className="project-live-badge">
+                      <span className="project-current-dot" aria-hidden="true" />
+                      Live now
+                    </span>
+                    <p>
+                      This project is live at{" "}
+                      <a
+                        href={project.alreadyLive.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {project.alreadyLive.label}{" "}
+                        <span aria-hidden="true">↗</span>
+                      </a>
+                      .
+                    </p>
+                  </div>
                 ) : project.youtubeVideoId ? (
                   <figure className="project-video">
-                    <div className="project-video-frame">
-                      <iframe
-                        src={`https://www.youtube-nocookie.com/embed/${project.youtubeVideoId}?rel=0`}
-                        title={project.youtubeVideoTitle}
-                        loading="lazy"
-                        referrerPolicy="strict-origin-when-cross-origin"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        allowFullScreen
-                      />
+                    <div
+                      className="project-video-frame"
+                      data-has-preview={project.youtubeThumbnail ? "true" : "false"}
+                      data-playing={playingVideo === project.name ? "true" : "false"}
+                    >
+                      {project.youtubeThumbnail &&
+                      playingVideo !== project.name ? (
+                        <button
+                          type="button"
+                          className="project-video-preview"
+                          aria-label={`Play ${project.youtubeVideoTitle}`}
+                          onClick={() => setPlayingVideo(project.name)}
+                        >
+                          <Image
+                            src={project.youtubeThumbnail}
+                            alt=""
+                            width={1876}
+                            height={821}
+                            sizes="(max-width: 760px) 100vw, 760px"
+                          />
+                          <span className="project-video-preview-shade" />
+                          <span className="project-video-play" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none">
+                              <path d="m9 7 8 5-8 5V7Z" />
+                            </svg>
+                          </span>
+                          <span className="project-video-preview-label">
+                            Watch walkthrough
+                          </span>
+                        </button>
+                      ) : (
+                        <iframe
+                          src={`https://www.youtube-nocookie.com/embed/${project.youtubeVideoId}?rel=0${project.youtubeThumbnail ? "&autoplay=1" : ""}`}
+                          title={project.youtubeVideoTitle}
+                          loading="lazy"
+                          referrerPolicy="strict-origin-when-cross-origin"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                          allowFullScreen
+                        />
+                      )}
                     </div>
                     <figcaption>
                       <span>Project walkthrough</span>

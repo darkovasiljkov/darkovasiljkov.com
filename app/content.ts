@@ -52,7 +52,12 @@ export type Project = {
   /** Paste the ID from youtube.com/watch?v=VIDEO_ID, or leave null. */
   youtubeVideoId: string | null;
   youtubeVideoTitle: string;
+  youtubeThumbnail?: string;
   currentPage?: boolean;
+  alreadyLive?: {
+    href: string;
+    label: string;
+  };
 };
 
 export const selectedProjects = [
@@ -71,21 +76,24 @@ export const selectedProjects = [
   },
   {
     name: "Convertly",
-    summary: "AI lead magnet platform",
+    summary: "AI lead magnet platform (SaaS Product)",
     period: "Project",
     description:
       "A subscription product for creating business-specific lead-generation chat assistants and sharing them with prospective customers.",
     contribution:
-      "Built the product across its web experience, application services, data layer, and AI integration.",
+      "Built the product across its web experience, application services, data layer, and AI integration. ",
     technologies: [
       "Next.js",
       "TypeScript",
       "Node.js",
-      "PostgreSQL",
+      "Stripe",
+      "Postgre and Supabase",
+      "Prisma ORM",
       "OpenAI API",
     ],
-    youtubeVideoId: null,
+    youtubeVideoId: "slNDyCkLvJQ",
     youtubeVideoTitle: "Convertly project walkthrough",
+    youtubeThumbnail: "/convertlyThumbnail.png",
   },
   {
     name: "BeMatched",
@@ -116,6 +124,10 @@ export const selectedProjects = [
     technologies: ["React", "TypeScript", "Next.js", "Cloudflare", "SEO"],
     youtubeVideoId: null,
     youtubeVideoTitle: "Gomatic.mk project walkthrough",
+    alreadyLive: {
+      href: "https://gomatic.mk",
+      label: "gomatic.mk",
+    },
   },
   {
     name: "Location-Aware Chat Room",
