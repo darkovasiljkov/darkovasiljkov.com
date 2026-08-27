@@ -207,7 +207,7 @@ export const timeline = [
     year: "2021",
     event:
       "Started studying Software Engineering at FCSE-UKIM and began freelancing on Upwork",
-  },
+  }
 ] as const;
 
 export const contactLinks = [
@@ -229,11 +229,18 @@ export const contactLinks = [
 ] as const;
 
 export const primaryContactLinks = [
-  contactLinks[0],
-  contactLinks[1],
+  {
+    ...contactLinks[0],
+    handle: "@darkovasiljkov",
+  },
+  {
+    ...contactLinks[1],
+    handle: "@darkovasiljkov",
+  },
   {
     label: "X",
     href: "https://x.com/vasiljkovdarko",
     external: true,
+    handle: "@vasiljkovdarko",
   },
 ] as const;

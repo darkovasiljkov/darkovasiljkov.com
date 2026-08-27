@@ -162,7 +162,7 @@ export default function Home() {
                         : {})}
                     >
                       <SocialIcon name={link.label} />
-                      {link.label}
+                      {link.handle}
                     </a>
                   </li>
                 ))}
