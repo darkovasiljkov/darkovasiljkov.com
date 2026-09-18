@@ -1052,9 +1052,9 @@ footer ul {
   }
 
   .lets-talk-button {
-    width: 100%;
-    min-height: 2.85rem;
-    justify-content: space-between;
+    width: fit-content;
+    min-height: 2.45rem;
+    justify-content: center;
     padding: 0.65rem 0.85rem;
   }
 
