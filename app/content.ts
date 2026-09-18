@@ -22,13 +22,13 @@ export const musicChannelUrl = "https://www.youtube.com/@sincerelydarko";
 export const currentActivities = [
   {
     before:
-    "Building telecom software with Angular (.ts) and .NET, making old systems feel a little less old.",
+    "Building telecom software with Angular and .NET, making old systems feel a little less old",
     link: null,
     after: "",
   },
   {
     before:
-      "Turning ideas into side projects and exploring where AI is actually useful.",
+      "Turning ideas into side projects and exploring where AI is actually useful",
     link: null,
     after: "",
   },
@@ -38,7 +38,7 @@ export const currentActivities = [
       label: "beats",
       href: musicChannelUrl,
     },
-    after: ".",
+    after: " ",
   },
 ] as const;
 
@@ -69,15 +69,15 @@ export const selectedProjects = [
       "Focused personal portfolio designed to introduce my work, experience, interests, and the things I am currently building.",
     contribution:
       "Designed and built the complete experience, including the responsive interface, content system, theme support, project interactions, metadata, and visual identity.",
-    technologies: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS 4"],
+    technologies: ["Next.js 16", "React 19", "TypeScript", "Vercel"],
     youtubeVideoId: null,
     youtubeVideoTitle: "Darko Portfolio walkthrough",
     currentPage: true,
   },
   {
     name: "Convertly",
-    summary: "AI lead magnet platform (SaaS Product)",
-    period: "Project",
+    summary: "AI lead magnet platform",
+    period: "Product",
     description:
       "A subscription product for creating business-specific lead-generation chat assistants and sharing them with prospective customers.",
     contribution:
@@ -96,11 +96,30 @@ export const selectedProjects = [
     youtubeThumbnail: "/convertlyThumbnail.png",
   },
   {
+    name: "Folqo.app",
+    summary: "Workforce and leave management platform",
+    period: "In Development",
+    description:
+      "A workforce management platform for businesses to centralize employee records, manage leave requests and approvals, and move existing spreadsheet-based processes into a structured digital workflow.",
+    contribution:
+      "Designing and developing the product end-to-end, including system architecture, backend APIs, database design, frontend experience, and deployment.",
+    technologies: [
+      "ASP.NET Core",
+      "Angular",
+      "PostgreSQL",
+      "TypeScript",
+      "Entity Framework Core",
+      "Docker",
+    ],
+    youtubeVideoId: null,
+    youtubeVideoTitle: "Soon"
+  },
+  {
     name: "BeMatched",
     summary: "Full-stack dating application",
     period: "Project",
     description:
-      "A deployed application with profile management, matching, REST APIs, and real-time messaging.",
+      "A dating application with profile management, matching users, like features, REST APIs and real-time messaging.",
     contribution:
       "Built the full-stack application, including the Angular interface, ASP.NET Core API, persistence, and real-time features.",
     technologies: [
@@ -121,26 +140,14 @@ export const selectedProjects = [
       "A business website for GOMATIC that presents the company, its manufacturing capabilities, and its services to prospective customers.",
     contribution:
       "Designed and built a responsive website with clear navigation and a professional presentation of the business.",
-    technologies: ["React", "TypeScript", "Next.js", "Cloudflare", "SEO"],
+    technologies: ["React", "TypeScript", "Next.js", "Cloudflare", "SEO Optimization"],
     youtubeVideoId: null,
     youtubeVideoTitle: "Gomatic.mk project walkthrough",
     alreadyLive: {
       href: "https://gomatic.mk",
       label: "gomatic.mk",
     },
-  },
-  {
-    name: "Location-Aware Chat Room",
-    summary: "Faculty ticketing system project",
-    period: "Project",
-    description:
-      "A Wi-Fi-aware student chat room with real-time communication and interactive surveys.",
-    contribution:
-      "Implemented the application flow and real-time communication used by students in the room.",
-    technologies: ["Java", "Spring", "JavaScript", "WebSockets"],
-    youtubeVideoId: null,
-    youtubeVideoTitle: "Location-Aware Chat Room project walkthrough",
-  },
+  }
 ] satisfies readonly Project[];
 
 export const readingIntroduction =
@@ -150,13 +157,12 @@ export type ReadingItem = {
   title: string;
   detail: string;
   rating: number | null;
-  /** Set to a short label such as "Reading now", or leave null. */
   badge: string | null;
 };
 
 export const reading = [
   {
-    title: "Clean Code",
+    title: "The Clean Coder",
     detail: "Robert C. Martin",
     rating: 4,
     badge: null,
@@ -170,7 +176,7 @@ export const reading = [
   {
     title: "Meditations",
     detail: "Marcus Aurelius",
-    rating: 5,
+    rating: 4,
     badge: null,
   },
   {
@@ -183,7 +189,13 @@ export const reading = [
     title: "The Daily Stoic",
     detail: "Ryan Holiday",
     rating: null,
-    badge: "reading"
+    badge: "reading now"
+  },
+  {
+    title: "100M Money Models",
+    detail: "Alex Hormozi",
+    rating: null,
+    badge: "reading now"
   },
 ] satisfies readonly ReadingItem[];
 
