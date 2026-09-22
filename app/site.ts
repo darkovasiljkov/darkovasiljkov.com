@@ -2,6 +2,6 @@ export const siteConfig = {
   name: "Darko Vasiljkov",
   title: "Darko Vasiljkov",
   description:
-    "Software engineer in Macedonia building reliable web systems, custom software, and polished digital products.",
+    "Darko Vasiljkov, a curious software engineer. Talks about .NET, TypeScript, software engineering, AI, and building products.",
   url: "https://darkovasiljkov.com",
 } as const;
