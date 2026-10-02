@@ -22,13 +22,13 @@ export const musicChannelUrl = "https://www.youtube.com/@sincerelydarko";
 export const currentActivities = [
   {
     before:
-    "Building telecom software with Angular and .NET, making old systems feel a little less old",
+    "Working on enterprise telecom software with Angular and .NET",
     link: null,
     after: "",
   },
   {
     before:
-      "Turning ideas into side projects and exploring where AI is actually useful",
+      "Building Folqo and exploring where AI is actually useful",
     link: null,
     after: "",
   },

@@ -1,13 +1,18 @@
-import { readFile, writeFile } from "node:fs/promises";
+import { writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import sharp from "sharp";
 
-const inputPath = resolve("public/favicon-logo.png");
-const outputPath = resolve("app/favicon.ico");
+const inputPath = resolve("public/favicon-portrait-bw.png");
+const faviconPath = resolve("app/favicon.ico");
+const iconPath = resolve("app/icon.png");
 const wordmarkInputPath = resolve("public/signature-logo-v3.png");
 const wordmarkOutputPath = resolve("public/signature-logo-final.png");
 const sizes = [16, 32, 48];
-const input = await readFile(inputPath);
+const portrait = await sharp(inputPath)
+  .extract({ left: 87, top: 0, width: 1080, height: 1080 })
+  .flatten({ background: "#e6e6e6" })
+  .png()
+  .toBuffer();
 
 await sharp(wordmarkInputPath)
   .trim()
@@ -21,31 +26,12 @@ await sharp(wordmarkInputPath)
   .png()
   .toFile(wordmarkOutputPath);
 
-const trimmedLogo = await sharp(input).trim().png().toBuffer();
-const pngImages = await Promise.all(
-  sizes.map(async (size) => {
-    const padding = Math.max(2, Math.round(size * 0.1));
-    const logo = await sharp(trimmedLogo)
-      .resize({
-        width: size - padding * 2,
-        height: size - padding * 2,
-        fit: "contain",
-      })
-      .png()
-      .toBuffer();
+await sharp(portrait).resize(512, 512).png().toFile(iconPath);
 
-    return sharp({
-      create: {
-        width: size,
-        height: size,
-        channels: 4,
-        background: "#11110f",
-      },
-    })
-      .composite([{ input: logo, gravity: "center" }])
-      .png()
-      .toBuffer();
-  }),
+const pngImages = await Promise.all(
+  sizes.map((size) =>
+    sharp(portrait).resize(size, size).ensureAlpha().png().toBuffer(),
+  ),
 );
 
 const directorySize = 6 + pngImages.length * 16;
@@ -70,5 +56,5 @@ pngImages.forEach((image, index) => {
   imageOffset += image.length;
 });
 
-await writeFile(outputPath, Buffer.concat([directory, ...pngImages]));
-console.log(`Created ${outputPath} with ${sizes.join(", ")}px variants.`);
+await writeFile(faviconPath, Buffer.concat([directory, ...pngImages]));
+console.log(`Created ${faviconPath} and ${iconPath}.`);
