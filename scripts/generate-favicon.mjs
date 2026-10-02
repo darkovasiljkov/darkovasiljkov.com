@@ -2,7 +2,7 @@ import { writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import sharp from "sharp";
 
-const inputPath = resolve("public/favicon-portrait-bw.png");
+const inputPath = resolve("public/favicon-portrait-color.png");
 const faviconPath = resolve("app/favicon.ico");
 const iconPath = resolve("app/icon.png");
 const wordmarkInputPath = resolve("public/signature-logo-v3.png");
@@ -11,6 +11,7 @@ const sizes = [16, 32, 48];
 const portrait = await sharp(inputPath)
   .extract({ left: 87, top: 0, width: 1080, height: 1080 })
   .flatten({ background: "#e6e6e6" })
+  .modulate({ brightness: 0.85 })
   .png()
   .toBuffer();
 
