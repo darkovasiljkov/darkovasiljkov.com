@@ -57,6 +57,16 @@ export function ProjectAccordion({ projects }: ProjectAccordionProps) {
             >
               <div className="project-panel-inner">
                 <div className="project-details">
+                  <span className={`project-logo-frame${project.currentPage ? " project-logo-personal" : ""}${project.name === "BeMatched" ? " project-logo-dark" : ""}`}>
+                    <Image
+                      src={project.logo}
+                      alt=""
+                      width={120}
+                      height={40}
+                      className="project-logo"
+                      unoptimized
+                    />
+                  </span>
                   <p>{project.description}</p>
                   <dl className="project-meta">
                     <div>

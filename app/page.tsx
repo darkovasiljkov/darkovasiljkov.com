@@ -1,6 +1,8 @@
 import Image from "next/image";
+import { Fragment } from "react";
 import { ProjectAccordion } from "./components/project-accordion";
 import { ThemeToggle } from "./components/theme-toggle";
+import { SignatureIntro } from "./components/signature-intro";
 import {
   contactLinks,
   currentActivities,
@@ -129,7 +131,18 @@ export default function Home() {
           __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
         }}
       />
-      <ThemeToggle />
+      <div className="top-actions">
+        <nav aria-label="Get in touch">
+          <a
+            className="top-contact-link"
+            href="mailto:vasiljkovdarko@gmail.com?subject=Let%27s%20talk%20about%20a%20project"
+          >
+            Let&apos;s talk <span aria-hidden="true">↗</span>
+          </a>
+        </nav>
+        <ThemeToggle />
+      </div>
+      <SignatureIntro src={profile.signature.src} />
 
       <main>
         <header className="hero">
@@ -169,16 +182,6 @@ export default function Home() {
               </ul>
             </nav>
 
-            <div className="hero-cta">
-              <a
-                className="lets-talk-button"
-                href="mailto:vasiljkovdarko@gmail.com?subject=Let%27s%20talk%20about%20a%20project"
-              >
-                Let&apos;s talk
-                <span aria-hidden="true">↗</span>
-              </a>
-              <p>Have something interesting in mind? I&apos;d love to hear about it.</p>
-            </div>
           </div>
 
           <figure className="hero-portrait">
@@ -227,6 +230,46 @@ export default function Home() {
         </section>
 
         <div className="reading-column">
+          <section aria-labelledby="timeline-heading" className="section-block">
+            <h2 id="timeline-heading">Timeline</h2>
+            <ol className="timeline-list">
+              {timeline.map((item, index) => (
+                <li key={`${item.year}-${index}`}>
+                  <p className="timeline-year">{item.year}</p>
+                  <p>
+                    {item.event.split("MCA.mk").map((text, partIndex) => (
+                      <Fragment key={partIndex}>
+                        {partIndex > 0 && (
+                          <a href="https://www.mca.dev/" target="_blank" rel="noopener noreferrer">
+                            MCA.mk
+                          </a>
+                        )}
+                        {text}
+                      </Fragment>
+                    ))}
+                  </p>
+                </li>
+              ))}
+            </ol>
+          </section>
+        </div>
+
+        <aside className="x-card" aria-labelledby="x-card-heading">
+          <div className="x-card-header">
+            <h2 id="x-card-heading">Occasionally on X</h2>
+            <a href="https://x.com/vasiljkovdarko" target="_blank" rel="noopener noreferrer">
+              <SocialIcon name="X" /> @vasiljkovdarko
+            </a>
+          </div>
+          <blockquote>
+            The world belongs to optimists. Because if you are going to do anything big, you have to believe it&apos;s gonna happen, otherwise it never will.
+          </blockquote>
+          <a className="x-post-link" href="https://x.com/vasiljkovdarko/status/1988961938974654731" target="_blank" rel="noopener noreferrer">
+            Read on X <span aria-hidden="true">↗</span>
+          </a>
+        </aside>
+
+        <div className="reading-column">
           <section aria-labelledby="reading-heading" className="section-block">
             <h2 id="reading-heading">Reading</h2>
             <p className="section-description">{readingIntroduction}</p>
@@ -256,17 +299,6 @@ export default function Home() {
                 </li>
               ))}
             </ul>
-          </section>
-          <section aria-labelledby="timeline-heading" className="section-block">
-            <h2 id="timeline-heading">Timeline</h2>
-            <ol className="timeline-list">
-              {timeline.map((item, index) => (
-                <li key={`${item.year}-${index}`}>
-                  <p className="timeline-year">{item.year}</p>
-                  <p>{item.event}</p>
-                </li>
-              ))}
-            </ol>
           </section>
         </div>
       </main>

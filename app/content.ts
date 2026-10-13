@@ -5,7 +5,7 @@ export const profile = {
     before: "I'm a software engineer from ",
     country: "Macedonia",
     after:
-      ", currently building telecom software at MCA.mk. I work across the stack, solving complex problems and turning them into software people can rely on. I spend a lot of my free time building too, from polished websites to side projects and ideas I simply want to see exist.",
+      ", working across the stack with .NET and TypeScript to solve complex problems and build software people can rely on. I care about how things work, how they feel to use, and how easy they are to maintain. I like getting into the details, asking questions, and finding a simpler way forward.",
   },
   signature: {
     src: "/signature-logo-final.png",
@@ -22,7 +22,7 @@ export const musicChannelUrl = "https://www.youtube.com/@sincerelydarko";
 export const currentActivities = [
   {
     before:
-    "Working on enterprise telecom software with Angular and .NET",
+    "Working at MCA on enterprise telecom software with Angular and .NET",
     link: null,
     after: "",
   },
@@ -44,6 +44,7 @@ export const currentActivities = [
 
 export type Project = {
   name: string;
+  logo: string;
   summary: string;
   period: string;
   description: string;
@@ -63,6 +64,7 @@ export type Project = {
 export const selectedProjects = [
   {
     name: "Darko Portfolio",
+    logo: "/favicon.ico",
     summary: "Personal portfolio and digital home",
     period: "You’re here",
     description:
@@ -76,6 +78,7 @@ export const selectedProjects = [
   },
   {
     name: "Convertly",
+    logo: "/projects/convertly.png",
     summary: "AI lead magnet platform",
     period: "Product",
     description:
@@ -97,6 +100,7 @@ export const selectedProjects = [
   },
   {
     name: "Folqo.app",
+    logo: "/projects/folqo.png",
     summary: "Workforce and leave management platform",
     period: "In Development",
     description:
@@ -116,6 +120,7 @@ export const selectedProjects = [
   },
   {
     name: "BeMatched",
+    logo: "/projects/bematched.png",
     summary: "Full-stack dating application",
     period: "Project",
     description:
@@ -134,6 +139,7 @@ export const selectedProjects = [
   },
   {
     name: "Gomatic.mk",
+    logo: "/projects/gomatic.png",
     summary: "Manufacturing business website",
     period: "Project",
     description:

@@ -87,11 +87,34 @@ button {
   padding-block: 6.5rem 8.5rem;
 }
 
-.theme-toggle {
+.top-actions {
   position: absolute;
   z-index: 10;
   top: 2.5rem;
   right: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.top-contact-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 2.75rem;
+  padding-inline: 0.6rem;
+  color: var(--muted);
+  font-size: 0.8125rem;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 140ms ease;
+}
+
+.top-contact-link:hover {
+  color: var(--foreground);
+}
+
+.theme-toggle {
   display: grid;
   width: 2rem;
   height: 2rem;
@@ -137,11 +160,13 @@ button {
 .hero {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 13rem;
-  gap: clamp(3rem, 7vw, 5.5rem);
+  gap: 1.5rem clamp(3rem, 7vw, 5.5rem);
   align-items: start;
 }
 
 .hero-copy {
+  grid-column: 1;
+  grid-row: 1;
   max-width: 38rem;
   padding-top: 0.2rem;
 }
@@ -298,80 +323,6 @@ button {
   line-height: 1rem;
 }
 
-.hero-cta {
-  display: flex;
-  gap: 0.9rem;
-  align-items: center;
-  margin-top: 1.75rem;
-}
-
-.hero-cta p {
-  max-width: 19rem;
-  color: var(--muted);
-  font-size: 0.75rem;
-  line-height: 1.3rem;
-}
-
-.lets-talk-button {
-  position: relative;
-  isolation: isolate;
-  display: inline-flex;
-  gap: 0.45rem;
-  align-items: center;
-  min-height: 2.15rem;
-  padding: 0.35rem 0.8rem;
-  border: 1px solid color-mix(in srgb, var(--foreground) 24%, transparent);
-  border-radius: 999px;
-  background:
-    linear-gradient(
-      135deg,
-      color-mix(in srgb, var(--foreground) 13%, transparent),
-      transparent 58%
-    ),
-    color-mix(in srgb, var(--surface) 68%, transparent);
-  box-shadow:
-    inset 0 1px 0 rgb(255 255 255 / 13%),
-    0 0.4rem 1.4rem rgb(0 0 0 / 14%);
-  backdrop-filter: blur(12px);
-  color: var(--foreground);
-  font-size: 0.75rem;
-  font-weight: 550;
-  line-height: 1rem;
-  text-decoration: none;
-  transition:
-    border-color 140ms ease,
-    background-color 140ms ease,
-    box-shadow 180ms ease,
-    transform 140ms ease;
-}
-
-.lets-talk-button:hover {
-  border-color: color-mix(in srgb, var(--foreground) 42%, transparent);
-  background:
-    linear-gradient(
-      135deg,
-      color-mix(in srgb, var(--foreground) 20%, transparent),
-      transparent 58%
-    ),
-    color-mix(in srgb, var(--surface-hover) 88%, transparent);
-  box-shadow:
-    inset 0 1px 0 rgb(255 255 255 / 18%),
-    0 0.65rem 1.7rem rgb(0 0 0 / 18%);
-  transform: translateY(-1px);
-}
-
-.lets-talk-button > span {
-  display: grid;
-  width: 1.35rem;
-  height: 1.35rem;
-  place-items: center;
-  border: 1px solid color-mix(in srgb, var(--foreground) 20%, transparent);
-  border-radius: 50%;
-  background: color-mix(in srgb, var(--foreground) 7%, transparent);
-  font-size: 0.8rem;
-  line-height: 1;
-}
-
 .social-links {
   margin-top: 1.15rem;
 }
@@ -429,6 +380,8 @@ button {
 }
 
 .hero-portrait {
+  grid-column: 2;
+  grid-row: 1;
   width: 100%;
   overflow: hidden;
   border: 1px solid rgb(0 0 0 / 28%);
@@ -508,6 +461,80 @@ button {
 .project-heading {
   display: grid;
   min-width: 0;
+}
+
+.project-logo-frame {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 4.5rem;
+  height: 1.5rem;
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+
+.project-logo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: grayscale(1) invert(1);
+  mix-blend-mode: screen;
+}
+
+.project-logo-dark .project-logo {
+  filter: grayscale(1);
+}
+
+:root[data-theme="light"] .project-logo {
+  filter: none;
+  mix-blend-mode: multiply;
+}
+
+:root[data-theme="light"] .project-logo-dark .project-logo {
+  filter: grayscale(1) invert(1);
+}
+
+.project-logo-personal {
+  width: 1.5rem;
+}
+
+.project-logo-personal .project-logo {
+  filter: none;
+  mix-blend-mode: normal;
+}
+
+.x-card {
+  max-width: 32rem;
+  margin-top: 2.5rem;
+  padding-left: 1rem;
+  border-left: 1px solid var(--border);
+}
+
+.x-card-header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.x-card-header a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  text-decoration: none;
+}
+
+.x-card blockquote {
+  margin-block: 0.8rem;
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.x-post-link {
+  font-size: 0.75rem;
+  color: var(--muted);
 }
 
 .project-name {
@@ -1002,6 +1029,8 @@ footer ul {
   }
 
   .hero-portrait {
+    grid-column: 1;
+    grid-row: 2;
     width: min(100%, 15rem);
     margin-top: 3.75rem;
   }
@@ -1020,7 +1049,7 @@ footer ul {
     padding-block: 5rem 6.5rem;
   }
 
-  .theme-toggle {
+  .top-actions {
     top: 1.5rem;
     right: 1.5rem;
   }
@@ -1042,25 +1071,6 @@ footer ul {
     margin-top: 2.75rem;
     font-size: 1rem;
     line-height: 1.7;
-  }
-
-  .hero-cta {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.7rem;
-    margin-top: 1.5rem;
-  }
-
-  .lets-talk-button {
-    width: fit-content;
-    min-height: 2.45rem;
-    justify-content: center;
-    padding: 0.65rem 0.85rem;
-  }
-
-  .hero-cta p {
-    max-width: none;
-    padding-inline: 0.15rem;
   }
 
   .hero-portrait {
@@ -1093,6 +1103,12 @@ footer ul {
     gap: 0.1rem;
   }
 
+  .project-period {
+    max-width: 5.5rem;
+    white-space: normal;
+    text-align: right;
+  }
+
   .timeline-list li {
     grid-template-columns: 5.25rem minmax(0, 1fr);
     gap: 0.75rem;
@@ -1108,7 +1124,47 @@ footer ul {
   }
 }
 
+.signature-intro {
+  display: none;
+}
+
+:root[data-signature-intro="active"] .signature-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  background: var(--background);
+  pointer-events: none;
+  animation: signature-intro-out 600ms ease forwards;
+}
+
+.signature-intro-image {
+  width: 7rem;
+  height: auto;
+  mix-blend-mode: screen;
+  animation: signature-reveal 450ms ease both;
+}
+
+:root[data-theme="light"] .signature-intro-image {
+  filter: invert(1);
+  mix-blend-mode: multiply;
+}
+
+@keyframes signature-reveal {
+  from { opacity: 0.25; transform: translateY(3px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes signature-intro-out {
+  0%, 55% { opacity: 1; }
+  100% { opacity: 0; visibility: hidden; }
+}
+
 @media (prefers-reduced-motion: reduce) {
+  :root[data-signature-intro="active"] .signature-intro {
+    display: none;
+  }
   *,
   *::before,
   *::after {

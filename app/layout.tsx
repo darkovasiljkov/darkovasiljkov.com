@@ -15,6 +15,27 @@ const themeScript = `
     document.documentElement.dataset.theme = theme;
     document.documentElement.style.colorScheme = theme;
   } catch (_) {}
+  (function () {
+    if (location.pathname !== "/" || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    try {
+      if (sessionStorage.getItem("darko-signature-seen")) return;
+      sessionStorage.setItem("darko-signature-seen", "true");
+    } catch (_) {}
+    var root = document.documentElement;
+    root.dataset.signatureIntro = "active";
+    var dismiss = function () {
+      delete root.dataset.signatureIntro;
+      window.removeEventListener("pointerdown", dismiss);
+      window.removeEventListener("keydown", dismiss);
+      window.removeEventListener("scroll", dismiss);
+    };
+    window.addEventListener("pointerdown", dismiss, { once: true });
+    window.addEventListener("keydown", dismiss, { once: true });
+    window.addEventListener("scroll", dismiss, { once: true, passive: true });
+    document.addEventListener("DOMContentLoaded", function () {
+      window.setTimeout(dismiss, 600);
+    }, { once: true });
+  })();
 `;
 
 export const metadata: Metadata = {
